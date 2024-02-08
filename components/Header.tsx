@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect } from "react";
 import TopHeader from "./TopHeader";
-import Navbar from "./Navbar";
+import Navbar from "./Navbar/Navbar";
 
 import {
   motion,
@@ -11,6 +11,7 @@ import {
   useTransform,
 } from "framer-motion";
 import clamp from "@/helpers/clamp";
+import MobileNavbar from "./Navbar/MobileNavbar";
 
 const useBoundedScroll = (bounds: number) => {
   let { scrollY } = useScroll();
@@ -29,9 +30,9 @@ const useBoundedScroll = (bounds: number) => {
 3;
 const Header = () => {
   let { scrollYBounded } = useBoundedScroll(300);
-  let height = useTransform(scrollYBounded, [0, 300], [96, 50]);
+  let height = useTransform(scrollYBounded, [0, 300], [80, 50]);
 
-  // for tobbar
+  // for topbar
   const { scrollY } = useScroll();
   let top = useTransform(scrollY, [0, 36], [36, 0]);
 
@@ -44,9 +45,10 @@ const Header = () => {
           height,
           top,
         }}
-        className="fixed inset-x-0 z-40 bg-secondary shadow transition-height duration-150"
+        className="fixed z-30 flex w-full items-center bg-secondary shadow-md transition-height duration-150"
       >
         <Navbar />
+        <MobileNavbar />
       </motion.div>
     </>
   );

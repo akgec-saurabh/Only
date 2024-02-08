@@ -28,7 +28,7 @@ export default function RootLayout({
         <Providers>
           <Overlays />
           <Header />
-          <main className="pt-[96px]">{children}</main>
+          <main className="pt-[80px]">{children}</main>
         </Providers>
       </body>
     </html>

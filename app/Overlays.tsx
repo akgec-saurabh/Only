@@ -1,6 +1,8 @@
 "use client";
+import Auth from "@/components/Auth/Auth";
 import Backdrop from "@/components/Backdrop";
-import SideBar from "@/components/SideBar/SideBar";
+import CartSideBar from "@/components/CartSideBar/CartSideBar";
+import AuthContext from "@/store/auth-context";
 import SidebarContext from "@/store/sidebar-context";
 import { AnimatePresence } from "framer-motion";
 import React, { useContext } from "react";
@@ -8,6 +10,7 @@ import React, { useContext } from "react";
 const Overlays = () => {
   const sidebarCtx = useContext(SidebarContext);
   const isSidebarOpen = sidebarCtx.isOpen;
+  const { isAuthOpen, closeAuth } = useContext(AuthContext);
 
   const closeSidebarCartHandler = () => {
     sidebarCtx.closeSidebar();
@@ -18,7 +21,13 @@ const Overlays = () => {
         {isSidebarOpen && (
           <>
             <Backdrop onClick={closeSidebarCartHandler} />
-            <SideBar />
+            <CartSideBar />
+          </>
+        )}
+        {isAuthOpen && (
+          <>
+            <Backdrop opacity="dark" onClick={closeAuth} />
+            <Auth />
           </>
         )}
       </AnimatePresence>

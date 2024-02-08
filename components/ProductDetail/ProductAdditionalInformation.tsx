@@ -3,6 +3,10 @@ import { additionalInformationProps } from "@/types/product";
 const ProductAdditionalInformation: React.FC<additionalInformationProps> = ({
   ...props
 }) => {
+  console.log(
+    "----------------------PROPS[ProductAdditionalInformation]-------------------------",
+    props,
+  );
   return (
     <div className="py-12">
       <table className="flex gap-12">
@@ -23,7 +27,10 @@ const ProductAdditionalInformation: React.FC<additionalInformationProps> = ({
               {props.dimensions.height} cm
             </td>
             <td className="mb-7 py-[3px]">{props.sizes.join(", ")}</td>
-            <td className="mb-7 py-[3px]">{props.colors.join(", ")}</td>
+
+            <td className="mb-7 py-[3px]">
+              {props.colors.map((color) => color.name).join(", ")}
+            </td>
             <td className="mb-7 py-[3px]">{props.storage}</td>
           </tr>
         </tbody>

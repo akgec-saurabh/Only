@@ -12,9 +12,13 @@ const ProductDetail: React.FC<productDetailProps> = ({
   reviews,
 }) => {
   const [detailHeading, setDetailHeading] = useState(0);
+  console.log(
+    "------------------ADDITONAL----------------",
+    additionalInformation,
+  );
 
   return (
-    <div className="max-w-5xl mx-auto my-24">
+    <div className="mx-auto my-24 max-w-5xl">
       <ProductDetailHeading
         detailHeading={detailHeading}
         setDetailHeading={setDetailHeading}

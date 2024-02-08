@@ -4,14 +4,14 @@ import { PiCaretLeft, PiCaretRight } from "react-icons/pi";
 
 const ProductNavbar = () => {
   return (
-    <div className="flex justify-between mb-6 pb-2">
+    <div className="mb-6 flex items-center justify-between pb-2">
       <div>
         <Button variant="link">HOME</Button>
         <span> / </span>
         <Button variant="link">THE SHOP</Button>
       </div>
 
-      <div className="flex justify-center items-center gap-4">
+      <div className="flex items-center justify-center gap-4">
         <Button hasIcon variant="link">
           <PiCaretLeft />
           <span className="hover-effect py-2">PREV</span>

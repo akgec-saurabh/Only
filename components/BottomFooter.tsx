@@ -1,5 +1,5 @@
 import React from "react";
-import Logo from "./Logo";
+import Logo from "./Navbar/Logo";
 import Link from "next/link";
 import {
   FaFacebookF,
@@ -16,7 +16,7 @@ const BottomFooter = () => {
   return (
     <div className="bg-primary text-white  ">
       <Newsletter />
-      <div className="grid grid-cols-5 max-w-screen-2xl py-24 mx-auto text-sm">
+      <div className="mx-auto grid max-w-screen-2xl grid-cols-5 py-24 text-sm">
         <ul className="space-y-3 px-4">
           <li>
             <Logo />
@@ -55,7 +55,7 @@ const BottomFooter = () => {
           </li>
         </ul>
         <ul className="space-y-3 ">
-          <li className="uppercase font-medium pb-7">
+          <li className="pb-7 font-medium uppercase">
             <Link href="">Company</Link>
           </li>
           <li>
@@ -76,7 +76,7 @@ const BottomFooter = () => {
         </ul>
 
         <ul className="space-y-3 px-4">
-          <li className="uppercase font-medium pb-7">
+          <li className="pb-7 font-medium uppercase">
             <Link href="">Shop</Link>
           </li>
           <li>
@@ -96,7 +96,7 @@ const BottomFooter = () => {
           </li>
         </ul>
         <ul className="space-y-3 px-4">
-          <li className="uppercase font-medium pb-7">
+          <li className="pb-7 font-medium uppercase">
             <Link href="">Help</Link>
           </li>
           <li>
@@ -119,14 +119,14 @@ const BottomFooter = () => {
           </li>
         </ul>
         <ul className="space-y-3 px-4">
-          <li className="uppercase font-medium pb-7">Opening Time</li>
+          <li className="pb-7 font-medium uppercase">Opening Time</li>
           <li>Mon - Fri: 8AM - 9PM</li>
           <li>Sat: 9AM - 8PM</li>
           <li>Sun: Closed</li>
         </ul>
       </div>
-      <div className="w-full h-[0.2px] bg-gray-900"></div>
-      <div className="py-6 max-w-screen-2xl mx-auto text-center text-sm">
+      <div className="h-[0.2px] w-full bg-gray-900"></div>
+      <div className="mx-auto max-w-screen-2xl py-6 text-center text-sm">
         <p>
           &#169;All rights reserved {footerName} | Where Comfort Meets
           Craftsmanship.

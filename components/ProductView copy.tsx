@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import Button from "@/components/Button";
-import ProductQuantity from "@/components/ProductQuantity";
+import ProductQuantity from "@/components/ProductView/ProductQuantity";
 import {
   PiHeartStraight,
   PiHeartStraightBold,
@@ -9,7 +9,7 @@ import {
   PiShareNetworkBold,
 } from "react-icons/pi";
 import ProductDetail from "./ProductDetail/ProductDetail";
-import ProductNavbar from "./ProductNavbar";
+import ProductNavbar from "./ProductView/ProductNavbar";
 
 const product = {
   name: "Lightweight Puffer Jacket With a Hood",

@@ -9,9 +9,9 @@ import {
 
 const TopHeader = () => {
   return (
-    <div className="bg-primary">
-      <div className="grid grid-cols-3 text-white px-16 h-9 text-sm max-width-container items-center">
-        <ul className="flex justify-self-start gap-2">
+    <div className="bg-primary ">
+      <div className="grid h-9 items-center text-sm  text-white lg:mx-auto lg:grid-cols-3 lg:max-2xl:px-10 xl:max-w-screen-2xl xl:px-10">
+        <ul className="hidden gap-2 justify-self-start lg:flex">
           <li className="">
             <Link href="">Shipping</Link>
           </li>
@@ -26,10 +26,10 @@ const TopHeader = () => {
             <Link href="">Track Order</Link>
           </li>
         </ul>
-        <div className="uppercase justify-self-center ">
+        <div className="justify-self-center uppercase ">
           <p>Free Shipping Worldwide</p>
         </div>
-        <ul className="flex justify-self-end items-center gap-1">
+        <ul className="hidden items-center gap-1 justify-self-end lg:flex">
           <li>
             <Link href="">
               <FaFacebookF />

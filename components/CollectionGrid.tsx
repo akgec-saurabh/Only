@@ -3,7 +3,7 @@ import React from "react";
 
 const CollectionGrid = () => {
   return (
-    <div className="max max-width-container grid h-[600px] w-full grid-cols-4 grid-rows-2 gap-7 px-16">
+    <div className=" max-width-container grid h-[600px] w-full grid-cols-4 grid-rows-2 gap-7 px-16">
       <div className="relative col-start-1 col-end-3 row-span-full flex flex-col bg-sky-300">
         <Image
           className="object-cover"
