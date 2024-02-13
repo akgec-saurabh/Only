@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import { Jost } from "next/font/google";
-import "./globals.css";
-import Navbar from "@/components/Navbar";
-import TopHeader from "@/components/TopHeader";
+import "@/app/globals.css";
 import Header from "@/components/Header";
-import { Providers } from "./Providers";
-import Overlays from "./Overlays";
+import { Providers } from "@/app/Providers";
+import Overlays from "@/app/Overlays";
+import BottomFooter from "@/components/BottomFooter";
+import { AnimatePresence } from "framer-motion";
 
 const inter = Jost({
   subsets: ["latin"],
@@ -29,6 +29,7 @@ export default function RootLayout({
           <Overlays />
           <Header />
           <main className="pt-[80px]">{children}</main>
+          <BottomFooter />
         </Providers>
       </body>
     </html>

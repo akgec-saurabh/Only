@@ -33,9 +33,9 @@ const ItemCart: React.FC<ItemCartProps> = ({ cart }) => {
           onClick={closeSidebarCartHandler}
           size="icon"
           variant="secondary"
-          className="absolute -left-5 top-5 -translate-x-2/4 rounded-full border shadow-sm hover:border-none hover:bg-primary hover:text-secondary"
+          className=" absolute left-44 top-[12px] -translate-x-2/4 rounded-full border shadow-sm hover:border-none hover:bg-primary hover:text-secondary sm:-left-5 sm:h-10 sm:w-10"
         >
-          <PiCaretRight size={18} />
+          <PiCaretRight size={22} />
         </Button>
       </div>
       <div className="myscrollbar relative h-full overflow-y-scroll px-5 py-2">

@@ -39,6 +39,7 @@ const ProductView = async ({ id }: { id: string }) => {
         <div className="mx-auto max-w-screen-2xl xl:p-10 xl:py-2">
           {/* For Product Image Slider and Image */}
           <ProductControls
+            productId={product?.id}
             productName={product?.name}
             shortDescription={product?.description.short}
             colors={product?.additionalInformation.colors}
@@ -48,7 +49,7 @@ const ProductView = async ({ id }: { id: string }) => {
           />
 
           {/* Product Details */}
-          {/* <ProductDetail
+          <ProductDetail
             description={{
               ...product?.description,
               productInfo: product?.productInfo,
@@ -58,7 +59,7 @@ const ProductView = async ({ id }: { id: string }) => {
               sizes: product?.sizes,
             }}
             // reviews={product?.reviews}
-          /> */}
+          />
         </div>
       )}
     </>

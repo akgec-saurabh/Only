@@ -14,6 +14,7 @@ interface AuthContextValueProps {
   openAuth: () => void;
   closeAuth: () => void;
   login: (userData: UserProps) => void;
+  logout: () => void;
 }
 
 const AuthContext = createContext<AuthContextValueProps>({
@@ -23,6 +24,7 @@ const AuthContext = createContext<AuthContextValueProps>({
   openAuth: () => {},
   closeAuth: () => {},
   login: (userData: UserProps) => {},
+  logout: () => {},
 });
 
 export default AuthContext;
@@ -53,7 +55,7 @@ export const AuthContextProvider: React.FC<AuthContextProviderProps> = ({
         name: { firstName: data.name.firstName, lastName: data.name.lastName },
       });
     }
-  }, []);
+  }, [userData]);
 
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [isAuthOpen, setIsAuthOpen] = useState<boolean>(false);
@@ -86,6 +88,11 @@ export const AuthContextProvider: React.FC<AuthContextProviderProps> = ({
     );
   };
 
+  const logoutHandler = () => {
+    localStorage.removeItem("userData");
+    setUser({ email: "", name: { firstName: "", lastName: "" }, token: "" });
+  };
+
   const contextValue: AuthContextValueProps = {
     user,
     isAuthenticated,
@@ -93,6 +100,7 @@ export const AuthContextProvider: React.FC<AuthContextProviderProps> = ({
     openAuth: openAuthHandler,
     closeAuth: closeAuthHandler,
     login: loginHandler,
+    logout: logoutHandler,
   };
   return (
     <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>

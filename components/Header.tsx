@@ -41,6 +41,7 @@ const Header = () => {
       <TopHeader />
       <motion.div
         // initial={{ top: 0 }}
+        initial={false}
         style={{
           height,
           top,

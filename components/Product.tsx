@@ -23,17 +23,16 @@ const Product: React.FC<ProductProps> = ({ ...props }) => {
   //   addItemToCart(item);
   // };
   return (
-    <div className="my-2 flex aspect-[3/4] flex-col overflow-hidden rounded shadow">
+    <div className="my-2 flex flex-col overflow-hidden  rounded shadow">
       <Link
         href={`/product/${generateSlug(props.name)}/${props.id}`}
-        className="relative flex  flex-1 flex-shrink-0 flex-col p-4 shadow"
+        className="relative aspect-[3/4] w-full shadow"
       >
-        <Image
+        <img
           // sizes="25vw"
           src={props.images[0]}
           alt={props.name}
-          fill
-          className="object-cover"
+          className="h-full object-cover"
         />
       </Link>
       <div className="mt-auto p-4">

@@ -3,8 +3,11 @@ import { CartItem } from "@/types/product";
 import React from "react";
 import Border from "../Border";
 import Button from "../Button";
+import { useRouter } from "next/navigation";
 
 const CartTotal: React.FC<ItemCartProps> = ({ cart }) => {
+  const router = useRouter();
+
   const getTotal = () => {
     return cart?.reduce((acc, item) => item.price * item.quantity + acc, 0);
   };
@@ -20,6 +23,10 @@ const CartTotal: React.FC<ItemCartProps> = ({ cart }) => {
   const gstCharge = getTotal() * 0.18;
 
   const total = getTotal() + shippingCharge + handlingCharge + gstCharge;
+
+  const checkoutHandler = () => {
+    router.push("/checkout");
+  };
 
   return (
     <div className="flex-1">
@@ -50,7 +57,7 @@ const CartTotal: React.FC<ItemCartProps> = ({ cart }) => {
           <div>&#8377;{total}</div>
         </div>
       </div>
-      <Button size="lg" className="w-full">
+      <Button onClick={checkoutHandler} size="lg" className="w-full">
         PROCEED TO CHECKOUT
       </Button>
     </div>

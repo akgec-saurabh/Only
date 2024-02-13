@@ -18,7 +18,7 @@ const ProductInteraction: React.FC<ProductInteractionProps> = ({
 }) => {
   return (
     <div>
-      <div className="mb-8 flex gap-4">
+      <div className="xs:flex-row mb-8 flex flex-col gap-4">
         <ProductQuantity
           quantity={quantity}
           onIncreaseQuantity={increaseQuantityHandler}
@@ -26,7 +26,11 @@ const ProductInteraction: React.FC<ProductInteractionProps> = ({
           size="md"
           className="border"
         />
-        <Button onClick={onAddToCartHandler} size="lg">
+        <Button
+          className="w-full md:w-96"
+          onClick={onAddToCartHandler}
+          size="lg"
+        >
           ADD TO CART
         </Button>
       </div>

@@ -13,15 +13,15 @@ const ProductDetailHeading: React.FC<productDetailHeadingProps> = ({
   setDetailHeading,
 }) => {
   return (
-    <div className="flex gap-4 justify-center ">
+    <div className="flex flex-col justify-center gap-16 lg:flex-row ">
       <Button
         onClick={() => setDetailHeading(0)}
         variant="secondary"
         className={cn(
-          "text-base",
+          "max-w-max px-2 text-base",
           detailHeading === 0
             ? "underline-effect"
-            : "text-gray-500 hover-effect-full "
+            : "hover-effect-full text-gray-500 ",
         )}
       >
         DESCRIPTION
@@ -30,10 +30,10 @@ const ProductDetailHeading: React.FC<productDetailHeadingProps> = ({
         onClick={() => setDetailHeading(1)}
         variant="secondary"
         className={cn(
-          "text-base",
+          "max-w-max px-2 text-base",
           detailHeading === 1
             ? "underline-effect"
-            : "text-gray-500 hover-effect-full"
+            : "hover-effect-full text-gray-500",
         )}
       >
         ADDITIONAL INFORMATION
@@ -42,10 +42,10 @@ const ProductDetailHeading: React.FC<productDetailHeadingProps> = ({
         onClick={() => setDetailHeading(2)}
         variant="secondary"
         className={cn(
-          "text-base",
+          "max-w-max px-2 text-base",
           detailHeading === 2
             ? "underline-effect"
-            : "text-gray-500 hover-effect-full"
+            : "hover-effect-full text-gray-500",
         )}
       >
         REVIEWS

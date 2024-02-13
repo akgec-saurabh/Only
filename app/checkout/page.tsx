@@ -4,7 +4,7 @@ import React from "react";
 
 const page = () => {
   return (
-    <div className="max-width-container">
+    <div className="mx-auto max-w-xl p-4 md:max-w-2xl lg:max-w-screen-lg xl:max-w-screen-2xl xl:p-10">
       <h2 className="mb-12 text-[35px] font-bold uppercase">
         SHIPPING AND CHECKOUT
       </h2>

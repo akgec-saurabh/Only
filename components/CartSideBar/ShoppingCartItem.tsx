@@ -211,8 +211,9 @@ export const ShoppingCartItem: React.FC<CartItem> = ({
     color: string;
     size: string;
   }) => {
-    // removeItemFromCart({ id, size, color });
-    mutate({ id, size, color });
+    !!user.token
+      ? mutate({ id, size, color })
+      : removeItemFromCart({ id, size, color });
   };
   const handleIncreaseQuantity = ({
     id,
@@ -223,8 +224,22 @@ export const ShoppingCartItem: React.FC<CartItem> = ({
     color: string;
     size: string;
   }) => {
-    // increaseItemQuantity({ id, size, color })
-    increaseQuantity({ id, size, color });
+    !!user.token
+      ? increaseQuantity({ id, size, color })
+      : increaseItemQuantity({ id, size, color });
+  };
+  const handleDecreaseQuantity = ({
+    id,
+    size,
+    color,
+  }: {
+    id: string;
+    color: string;
+    size: string;
+  }) => {
+    !!user.token
+      ? decreaseQuantity({ id, size, color })
+      : decreaseItemQuantity({ id, size, color });
   };
 
   return (
@@ -246,7 +261,7 @@ export const ShoppingCartItem: React.FC<CartItem> = ({
           onIncreaseQuantity={() => {
             handleIncreaseQuantity({ id, size, color });
           }}
-          onDecreaseQuantity={() => decreaseQuantity({ id, size, color })}
+          onDecreaseQuantity={() => handleDecreaseQuantity({ id, size, color })}
           size="sm"
           quantity={quantity}
         />

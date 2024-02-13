@@ -21,6 +21,7 @@ import { cn } from "@/lib/utils";
 import { IoClose } from "react-icons/io5";
 import { ImageViewProps } from "@/types/components/ImageViewTypes";
 import ActiveColorContext from "@/store/activeColor-context";
+import { motion } from "framer-motion";
 
 // const FullImageView = ({
 //   images,
@@ -150,30 +151,9 @@ const ImageView: React.FC<ImageViewProps> = ({
   return (
     <>
       <div className="basis-7/12 gap-3">
-        <div className="no-scrollbar flex h-[750px] flex-col gap-3 overflow-y-scroll">
-          {imageColors.map((color, colorIndex) =>
-            color.map((img, imageIndex) => (
-              <Image
-                onClick={() => handleImageSelection(colorIndex, imageIndex)}
-                key={img}
-                className={cn(
-                  "h-[130px] w-[100px] ",
-                  index === imageIndex && colorIndex === activeColorIndex
-                    ? "opacity-100"
-                    : "opacity-40",
-                )}
-                height={130}
-                width={100}
-                // // TODO Remove https by setting write filename in backend
-                src={img}
-                alt="product"
-              />
-            )),
-          )}
-        </div>
         <div className=" relative">
           <Image
-            className=" aspect-[3/4] h-[750px] w-[674px] object-cover"
+            className=" mx-auto aspect-[3/4] object-cover"
             height={674}
             width={500}
             src={imageColors[activeColorIndex][index]}
@@ -214,11 +194,41 @@ const ImageView: React.FC<ImageViewProps> = ({
             <LiaExpandArrowsAltSolid />
           </button>
         </div>
+        <div className="relative">
+          <div className="absolute inset-x-0 flex h-14 justify-center">
+            <motion.div
+              animate={{ x: "100%" }}
+              className="no-scrollbar  flex aspect-[3/2]"
+            >
+              {imageColors.map((color, colorIndex) =>
+                color.map((img, imageIndex) => (
+                  <div key={img} className="relative aspect-[3/2] h-14">
+                    <Image
+                      onClick={() =>
+                        handleImageSelection(colorIndex, imageIndex)
+                      }
+                      className={cn(
+                        "aspect-[3/2] h-full object-cover",
+                        index === imageIndex && colorIndex === activeColorIndex
+                          ? "opacity-100"
+                          : "opacity-40",
+                      )}
+                      fill
+                      // // TODO Remove https by setting write filename in backend
+                      src={img}
+                      alt="product"
+                    />
+                  </div>
+                )),
+              )}
+            </motion.div>
+          </div>
+        </div>
       </div>
       {/* {isImageFullView && (
         <FullImageView
-          images={imageColors.flat()}
-          setIsImageFullView={setIsImageFullView}
+        images={imageColors.flat()}
+        setIsImageFullView={setIsImageFullView}
         />
       )} */}
     </>

@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 
 import Image from "next/image";
+import { AnimatePresence, motion } from "framer-motion";
 
 import Login from "@/components/Auth/Login";
 import AuthContext from "@/store/auth-context";
@@ -29,10 +30,28 @@ const Auth = () => {
   };
 
   return (
-    <div className="fixed  left-1/2 top-1/2 z-50  flex max-w-4xl -translate-x-1/2  -translate-y-1/2 justify-between overflow-hidden rounded-md">
+    <motion.div
+      initial={{
+        opacity: 0,
+        // height: 0,
+        // translateY: "-50%",
+        // top: "0%",
+        top: "0%",
+        left: "50%",
+      }}
+      animate={{
+        opacity: 1,
+        // height: "auto",
+        top: "50%",
+        left: "50%",
+      }}
+      exit={{ opacity: 0, top: 0 }}
+      transition={{ ease: [0.32, 0.72, 0, 1], duration: 0.7 }}
+      className="fixed z-50 flex    max-w-4xl  -translate-x-1/2 -translate-y-1/2   justify-between overflow-hidden rounded-md"
+    >
       <div className="relative h-[572px] w-[512px] bg-primary">
         <Image
-          className="aspect-[2/2] object-cover grayscale"
+          className="aspect-[2/2] object-cover grayscale-[0.4]"
           src="https://ecommm.s3.ap-south-1.amazonaws.com/auth.jpg"
           alt="Authentication Image"
           fill
@@ -69,7 +88,7 @@ const Auth = () => {
           </Button>
         )}
       </div>
-    </div>
+    </motion.div>
   );
 };
 

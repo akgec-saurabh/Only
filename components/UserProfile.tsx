@@ -3,13 +3,16 @@ import AuthContext from "@/store/auth-context";
 import React, { useContext } from "react";
 import Button from "./Button";
 import { useRouter } from "next/navigation";
+import { queryClient } from "@/lib/query";
 
 const UserProfile = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logout } = useContext(AuthContext);
   const router = useRouter();
 
   const handleLogout = () => {
-    localStorage.removeItem("userData");
+    queryClient.invalidateQueries({ queryKey: ["auth"] });
+    queryClient.invalidateQueries({ queryKey: ["cart"] });
+    logout();
     router.replace("/");
   };
 

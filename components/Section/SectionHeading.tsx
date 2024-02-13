@@ -27,7 +27,7 @@ const cartSections = [
 const SectionHeading: React.FC<SectionHeadingProps> = ({ width }) => {
   return (
     <>
-      <div className="flex w-full">
+      <div className="flex w-full flex-col lg:flex-row">
         {cartSections.map((section) => (
           <Link href={section.url} className="flex flex-1 gap-4 pb-4">
             <div className="text-lg font-medium">{section.id}</div>

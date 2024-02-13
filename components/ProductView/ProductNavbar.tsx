@@ -4,7 +4,7 @@ import { PiCaretLeft, PiCaretRight } from "react-icons/pi";
 
 const ProductNavbar = () => {
   return (
-    <div className="mb-6 flex items-center justify-between pb-2">
+    <div className="flex items-center justify-between xl:mb-6 xl:pb-2">
       <div>
         <Button variant="link">HOME</Button>
         <span> / </span>

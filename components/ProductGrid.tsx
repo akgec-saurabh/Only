@@ -20,7 +20,7 @@ const getAllProduct = async () => {
 const ProductGrid = async () => {
   const data = await getAllProduct();
   return (
-    <div className="my-10 grid grid-cols-1 gap-2 px-4 sm:grid-cols-2 md:gap-4 lg:grid-cols-3">
+    <div className="mx-auto my-10 grid max-w-xl grid-cols-2 gap-2 px-4 sm:grid-cols-2 md:max-w-2xl md:gap-4 lg:grid-cols-3 xl:mx-auto xl:max-w-screen-2xl xl:grid-cols-4 xl:p-10 ">
       {data.products?.map((product: ProductProps) => (
         <Product key={product.id} {...product} />
       ))}

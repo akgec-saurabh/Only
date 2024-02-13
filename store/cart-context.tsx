@@ -1,28 +1,12 @@
 "use client";
 import { CartItem } from "@/types/product";
-import { createContext, useState } from "react";
+import {
+  CartContextProviderProps,
+  CartContextValueProps,
+} from "@/types/store/cart-contextTypes";
+import { createContext, useEffect, useState } from "react";
 
-interface CartContextValue {
-  cart: CartItem[];
-  addItemToCart: (params: CartItem) => void;
-  removeItemFromCart: (params: {
-    id: string;
-    size: string;
-    color: string;
-  }) => void;
-  increaseItemQuantity: (params: {
-    id: string;
-    size: string;
-    color: string;
-  }) => void;
-  decreaseItemQuantity: (params: {
-    id: string;
-    size: string;
-    color: string;
-  }) => void;
-}
-
-const CartContext = createContext<CartContextValue>({
+const CartContext = createContext<CartContextValueProps>({
   cart: [],
   addItemToCart: () => {},
   removeItemFromCart: () => {},
@@ -30,22 +14,33 @@ const CartContext = createContext<CartContextValue>({
   decreaseItemQuantity: () => {},
 });
 
-interface CartContextProvider {
-  children: React.ReactNode;
-}
-
-export const CartContextProvider: React.FC<CartContextProvider> = ({
+export const CartContextProvider: React.FC<CartContextProviderProps> = ({
   children,
 }) => {
   const [cart, setCart] = useState<CartItem[]>([]);
+  useEffect(() => {
+    const cartString = localStorage.getItem("cartData");
+    if (cartString !== null) {
+      const carData = JSON.parse(cartString);
+      setCart(carData);
+    }
+  }, []);
 
   const addItemToCartHandler = (item: CartItem) => {
-    const index = cart.findIndex((cartItem) => cartItem.id === item.id);
+    const index = cart.findIndex(
+      (cartItem) =>
+        cartItem.id === item.id &&
+        cartItem.color === item.color &&
+        cartItem.size === item.size,
+    );
     if (index === -1) {
-      setCart((prv) => [...prv, item]);
+      setCart((prv) => {
+        localStorage.setItem("cartData", JSON.stringify([...prv, item]));
+
+        return [...prv, item];
+      });
     } else {
       //Check for diff color or diff size
-
       setCart((prv) => {
         const tempCart = [...prv];
         if (
@@ -55,8 +50,10 @@ export const CartContextProvider: React.FC<CartContextProvider> = ({
           const tempItem = { ...prv[index] };
           tempItem.quantity += item.quantity;
           tempCart[index] = tempItem;
+          localStorage.setItem("cartData", JSON.stringify(tempCart));
           return tempCart;
         } else {
+          localStorage.setItem("cartData", JSON.stringify([...prv, item]));
           setCart((prv) => [...prv, item]);
         }
         return prv;
@@ -82,6 +79,7 @@ export const CartContextProvider: React.FC<CartContextProvider> = ({
       setCart((prv) => {
         const tempCart = [...prv];
         tempCart.splice(index, 1);
+        localStorage.setItem("cartData", JSON.stringify(tempCart));
         return tempCart;
       });
     }
@@ -108,6 +106,7 @@ export const CartContextProvider: React.FC<CartContextProvider> = ({
         const tempItem = { ...tempCart[index] };
         tempItem.quantity += 1;
         tempCart[index] = tempItem;
+        localStorage.setItem("cartData", JSON.stringify(tempCart));
         return tempCart;
       });
     }
@@ -135,12 +134,13 @@ export const CartContextProvider: React.FC<CartContextProvider> = ({
           tempItem.quantity -= 1;
         }
         tempCart[index] = tempItem;
+        localStorage.setItem("cartData", JSON.stringify(tempCart));
         return tempCart;
       });
     }
   };
 
-  const contextValue: CartContextValue = {
+  const contextValue: CartContextValueProps = {
     cart,
     addItemToCart: addItemToCartHandler,
     removeItemFromCart: removeItemFromCartHandler,

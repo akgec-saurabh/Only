@@ -28,7 +28,7 @@ const ProductSelector: React.FC<ProductSelectorProps> = ({
   };
   return (
     <div className="mb-4 space-y-4">
-      <div className="mb-7 text-2xl font-medium">
+      <div className="my-7 text-2xl font-medium">
         <span>
           &#8377;{colors[activeColorIndex].sizes[activeSizeIndex].price}
         </span>

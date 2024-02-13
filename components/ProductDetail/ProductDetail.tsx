@@ -18,7 +18,7 @@ const ProductDetail: React.FC<productDetailProps> = ({
   );
 
   return (
-    <div className="mx-auto my-24 max-w-5xl">
+    <div className="xl: mx-auto my-24 max-w-xl px-4 md:max-w-2xl lg:max-w-5xl  ">
       <ProductDetailHeading
         detailHeading={detailHeading}
         setDetailHeading={setDetailHeading}
