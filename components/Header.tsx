@@ -1,9 +1,10 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import TopHeader from "./TopHeader";
 import Navbar from "./Navbar/Navbar";
 
 import {
+  AnimatePresence,
   motion,
   useMotionValue,
   useMotionValueEvent,
@@ -12,6 +13,7 @@ import {
 } from "framer-motion";
 import clamp from "@/helpers/clamp";
 import MobileNavbar from "./Navbar/MobileNavbar";
+import MobileMenu from "./Navbar/MobileMenu";
 
 const useBoundedScroll = (bounds: number) => {
   let { scrollY } = useScroll();
@@ -36,6 +38,11 @@ const Header = () => {
   const { scrollY } = useScroll();
   let top = useTransform(scrollY, [0, 36], [36, 0]);
 
+  const [menuOpen, setMenuOpen] = useState(false);
+  const handleMenuOpen = () => {
+    setMenuOpen((prv) => !prv);
+  };
+
   return (
     <>
       <TopHeader />
@@ -46,11 +53,13 @@ const Header = () => {
           height,
           top,
         }}
-        className="fixed z-30 flex w-full items-center bg-secondary shadow-md transition-height duration-150"
+        className="fixed z-30 flex w-full items-center bg-secondary shadow transition-height duration-150"
       >
         <Navbar />
-        <MobileNavbar />
+        <MobileNavbar menuOpen={menuOpen} handleMenuOpen={handleMenuOpen} />
       </motion.div>
+
+      <AnimatePresence>{menuOpen && <MobileMenu />}</AnimatePresence>
     </>
   );
 };

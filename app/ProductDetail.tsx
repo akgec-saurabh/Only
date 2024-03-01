@@ -1,10 +1,10 @@
 "use client";
 import React, { useState } from "react";
-import ProductAdditionalInformation from "./ProductAdditionalInformation";
+import ProductAdditionalInformation from "../components/ProductDetail/ProductAdditionalInformation";
 import ProductDescription from "@/components/ProductDetail/ProductDescription";
 import ProductReviews from "@/components/ProductDetail/ProductReviews";
 import { productDetailProps } from "@/types/product";
-import ProductDetailHeading from "./ProductDetailHeading";
+import ProductDetailHeading from "../components/ProductDetail/ProductDetailHeading";
 
 const ProductDetail: React.FC<productDetailProps> = ({
   description,

@@ -23,25 +23,30 @@ const Product: React.FC<ProductProps> = ({ ...props }) => {
   //   addItemToCart(item);
   // };
   return (
-    <div className="my-2 flex flex-col overflow-hidden  rounded shadow">
+    <div className="flex max-h-[520px] w-full flex-col overflow-hidden  rounded shadow">
       <Link
         href={`/product/${generateSlug(props.name)}/${props.id}`}
-        className="relative aspect-[3/4] w-full shadow"
+        className="relative w-full  shadow"
       >
-        <img
+        <Image
           // sizes="25vw"
           src={props.images[0]}
           alt={props.name}
-          className="h-full object-cover"
+          width={324}
+          height={432}
+          className="aspect-[3/4] w-full object-cover"
         />
       </Link>
-      <div className="mt-auto p-4">
+      <div className="mt-auto truncate p-4">
         <div className="flex items-center justify-between text-sm ">
           <span className="text-gray-500">{props.mainCategory}</span>
           <PiHeartStraight size={20} />
         </div>
-        <Link href={`/product/${generateSlug(props.name)}/${props.id}`}>
-          {props.name}
+        <Link
+          className="capitalize"
+          href={`/product/${generateSlug(props.name)}/${props.id}`}
+        >
+          {props.name.toLowerCase()}
         </Link>
         <div>&#8377; {props.price}</div>
       </div>

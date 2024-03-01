@@ -5,7 +5,6 @@ import Header from "@/components/Header";
 import { Providers } from "@/app/Providers";
 import Overlays from "@/app/Overlays";
 import BottomFooter from "@/components/BottomFooter";
-import { AnimatePresence } from "framer-motion";
 
 const inter = Jost({
   subsets: ["latin"],

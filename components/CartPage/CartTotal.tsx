@@ -12,9 +12,6 @@ const CartTotal: React.FC<ItemCartProps> = ({ cart }) => {
     return cart?.reduce((acc, item) => item.price * item.quantity + acc, 0);
   };
   let shippingCharge = 99;
-  if (getTotal() > 5000) {
-    shippingCharge = 0;
-  }
 
   let handlingCharge = 10;
   if (getTotal() > 5000) {
@@ -34,27 +31,23 @@ const CartTotal: React.FC<ItemCartProps> = ({ cart }) => {
         <div className="mb-5 text-base">CART TOTALS</div>
         <div className="grid grid-cols-3 py-4">
           <div className="col-span-1">SUBTOTAL</div>
-          <div>&#8377; {getTotal()}</div>
+          <div>&#8377; {getTotal().toFixed(2)}</div>
         </div>
         <Border />
         <div className="grid grid-cols-3 py-4">
           <div className="col-span-1">SHIPPING</div>
 
-          <div className="col-span-1">
-            {shippingCharge === 0
-              ? "Free Shipping"
-              : `Flat rate : ₹${shippingCharge.toFixed(2)}`}
-          </div>
+          <div className="col-span-1">&#8377; {shippingCharge.toFixed(2)}</div>
         </div>
 
         <div className="grid grid-cols-3 py-4">
           <div className="col-span-1">GST &#40;18%&#41;</div>
-          <div>&#8377;{gstCharge.toFixed(2)}</div>
+          <div>&#8377; {gstCharge.toFixed(2)}</div>
         </div>
         <Border />
         <div className="grid grid-cols-3 py-4">
           <div className="col-span-1">TOTAL</div>
-          <div>&#8377;{total}</div>
+          <div>&#8377; {total.toFixed(2)}</div>
         </div>
       </div>
       <Button onClick={checkoutHandler} size="lg" className="w-full">

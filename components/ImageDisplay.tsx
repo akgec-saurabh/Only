@@ -82,7 +82,7 @@ const ImageDisplay = ({
       </div>
       <div className=" flex justify-center overflow-hidden">
         <motion.div
-          animate={{ x: `-${(index * 100 * (2 / 4)) / (3 / 4)}%` }}
+          animate={{ x: `-${(index * 100 * (2 / 4)) / (3 / 4) + 4}%` }}
           className="flex aspect-[3/4] h-24"
         >
           {images.map((image, i) => (
@@ -90,7 +90,9 @@ const ImageDisplay = ({
               key={i}
               className={cn(
                 "shrink-0",
-                i === index ? "aspect-[3/4]" : "aspect-[2/4]",
+                i === index
+                  ? "mx-[8%] aspect-[3/4] border border-black"
+                  : "aspect-[2/4]",
               )}
               onClick={() => {
                 setIndex(i);

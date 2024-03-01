@@ -18,6 +18,7 @@ export const CartContextProvider: React.FC<CartContextProviderProps> = ({
   children,
 }) => {
   const [cart, setCart] = useState<CartItem[]>([]);
+
   useEffect(() => {
     const cartString = localStorage.getItem("cartData");
     if (cartString !== null) {

@@ -8,7 +8,7 @@ import {
   PiShareNetwork,
   PiShareNetworkBold,
 } from "react-icons/pi";
-import ProductDetail from "./ProductDetail/ProductDetail";
+import ProductDetail from "../app/ProductDetail";
 import ProductNavbar from "./ProductView/ProductNavbar";
 
 const product = {

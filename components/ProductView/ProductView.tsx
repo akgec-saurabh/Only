@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import Button from "@/components/Button";
 import ProductQuantity from "@/components/ProductView/ProductQuantity";
 import { PiHeartStraight, PiShareNetwork } from "react-icons/pi";
-import ProductDetail from "../ProductDetail/ProductDetail";
+import ProductDetail from "../../app/ProductDetail";
 import ProductNavbar from "./ProductNavbar";
 import ImageView from "../ImageView";
 import { ProductProps } from "@/types/product";

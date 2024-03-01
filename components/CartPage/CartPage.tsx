@@ -21,7 +21,7 @@ const CartPage = () => {
 
   console.log(user);
   const {
-    data: cart,
+    data: onlineCart,
     isPending,
     isError,
   } = useQuery({
@@ -32,8 +32,9 @@ const CartPage = () => {
           headers: { Authorization: `Bearer ${user?.token}` },
         })
         .then((response) => response.data.cart),
-    enabled: !!user.token,
   });
+
+  const cart = !!user.token ? onlineCart : offlineCart;
 
   return (
     <div className="flex flex-col gap-8 lg:flex-row">
@@ -46,37 +47,27 @@ const CartPage = () => {
         </div>
         <Border />
         <div className="">
-          {!!user.token
-            ? cart
-            : offlineCart.map((item, index) => (
-                <div key={index}>
-                  <ShoppingCartItemWide {...item} />
-                  {!!user.token ? (
-                    cart
-                  ) : offlineCart.length === index + 1 ? (
-                    ""
-                  ) : (
-                    <Border />
-                  )}
-                </div>
-              ))}
+          {cart?.map((item, index) => (
+            <div key={index}>
+              <ShoppingCartItemWide {...item} />
+              {cart.length === index + 1 ? "" : <Border />}
+            </div>
+          ))}
         </div>
       </div>
       <div className="md:hidden">
-        {!!user.token
-          ? cart
-          : offlineCart.map((item: CartItem, i) => (
-              <ShoppingCartItem
-                id={item.id}
-                image={item.image}
-                color={item.color}
-                price={item.price}
-                quantity={item.quantity}
-                size={item.size}
-                key={item.id + i}
-                name={item.name}
-              />
-            ))}
+        {cart?.map((item: CartItem, i) => (
+          <ShoppingCartItem
+            id={item.id}
+            image={item.image}
+            color={item.color}
+            price={item.price}
+            quantity={item.quantity}
+            size={item.size}
+            key={item.id + i}
+            name={item.name}
+          />
+        ))}
       </div>
       <CartTotal cart={cart} />
     </div>

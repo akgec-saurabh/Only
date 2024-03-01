@@ -13,7 +13,7 @@ const Logo = () => {
       onClick={onLogoClickHandler}
       className="flex cursor-pointer items-center text-3xl font-bold uppercase"
     >
-      N<span className="text-red-600">o</span>
+      N<span className="text-rose-500">o</span>
       va
     </div>
   );

@@ -1,6 +1,6 @@
 "use client";
 import { cn } from "@/lib/utils";
-import { ErrorMessage, Field, useFormikContext } from "formik";
+import { ErrorMessage, Field, useField, useFormikContext } from "formik";
 import React, { SelectHTMLAttributes } from "react";
 
 interface MySelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
@@ -9,42 +9,80 @@ interface MySelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
   as: string;
 }
 
-const MySelect: React.FC<MySelectProps> = ({ label, as, ...props }) => {
-  const { errors, touched } = useFormikContext();
-  const fieldName = props.name as keyof typeof errors;
+const states = [
+  "Andhra Pradesh",
+  "Arunachal Pradesh",
+  "Assam",
+  "Bihar",
+  "Chhattisgarh",
+  "Goa",
+  "Gujarat",
+  "Haryana",
+  "Himachal Pradesh",
+  "Jharkhand",
+  "Karnataka",
+  "Kerala",
+  "Madhya Pradesh",
+  "Maharashtra",
+  "Manipur",
+  "Meghalaya",
+  "Mizoram",
+  "Nagaland",
+  "Odisha",
+  "Punjab",
+  "Rajasthan",
+  "Sikkim",
+  "Tamil Nadu",
+  "Telangana",
+  "Tripura",
+  "Uttar Pradesh",
+  "Uttarakhand",
+  "West Bengal",
+  "Andaman and Nicobar Islands",
+  "Chandigarh",
+  "Dadra and Nagar Haveli and Daman and Diu",
+  "Delhi",
+  "Lakshadweep",
+  "Puducherry",
+];
 
-  const hasError = errors[fieldName] && touched[fieldName];
+const MySelect: React.FC<MySelectProps> = ({ label, as, ...props }) => {
+  const [field, meta] = useField(props);
+
   return (
     <div className="relative">
-      <Field
-        name={props.name}
-        as={as}
+      <select
+        {...field}
+        {...props}
         className={cn(
-          "border py-4 px-5 peer focus:outline-none focus:ring-1 block w-full appearance-none bg-white text-gray-500 text-sm",
-          hasError ? "ring-1 ring-red-600" : "focus:ring-black"
+          "peer block w-full appearance-none border bg-white px-5 py-4 text-sm text-black focus:outline-none focus:ring-1",
+          "focus:ring-black",
         )}
       >
-        <option className="border py-4 px-5 appearance-none" value="" disabled>
+        <option className="appearance-none border px-5 py-4" value="" disabled>
           Choose a Country...
         </option>
-        <option className="border py-4 px-5 appearance-none" value="in">
-          b
-        </option>
-        <option className="border py-4 px-5 appearance-none" value="pi">
-          pi
-        </option>
-      </Field>
-
+        {states.map((state, i) => (
+          <option
+            key={state}
+            className="appearance-none border px-5 py-4"
+            value={state}
+          >
+            {state}
+          </option>
+        ))}
+      </select>
       <label
-        className={cn(
-          "absolute text-gray-500 px-1 text-sm left-4 top-0 -translate-y-1/2 peer-focus:-translate-y-1/2 peer-focus:top-0 bg-secondary transition-all",
-          hasError && "text-red-600"
-        )}
+        className="absolute left-4 top-0 -translate-y-1/2 bg-secondary px-1 text-sm text-gray-500 transition-all peer-focus:top-0 peer-focus:-translate-y-1/2"
         htmlFor={props.name}
       >
         {label}
       </label>
-      {/* <ErrorMessage name={props.name} /> */}
+      {meta.touched && meta.error ? (
+        <div className="my-1 text-sm capitalize text-red-600">
+          <span className="flex items-center gap-2">{meta.error}</span>
+        </div>
+      ) : null}{" "}
     </div>
   );
 };

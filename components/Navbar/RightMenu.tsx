@@ -58,10 +58,10 @@ const RightMenu = () => {
           <span
             className={cn(
               "absolute bottom-0 right-0 flex h-4 w-4 items-center justify-center rounded-full text-xs font-bold text-white",
-              cart.length === 0 ? "" : "bg-orange-600",
+              cart?.length === 0 ? "" : "bg-orange-600",
             )}
           >
-            {cart.length === 0 ? "" : cart.length}
+            {cart?.length === 0 ? "" : cart?.length}
           </span>
         </Button>
       </li>
