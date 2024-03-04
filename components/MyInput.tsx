@@ -1,19 +1,24 @@
 import React, { InputHTMLAttributes } from "react";
 
 import { useField } from "formik";
+import { cn } from "@/lib/utils";
 
 interface MyInputProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string;
   name: string;
+  className?: string;
 }
 
-const MyInput: React.FC<MyInputProps> = ({ label, ...props }) => {
+const MyInput: React.FC<MyInputProps> = ({ label, className, ...props }) => {
   const [field, meta] = useField(props);
 
   return (
     <div className="relative w-full">
       <input
-        className="peer relative z-20 w-full border-none bg-transparent px-3 py-3 outline-none ring-1 ring-gray-200 focus:ring-primary"
+        className={cn(
+          "peer relative z-20 w-full border-none bg-transparent px-3 py-3 outline-none ring-1 ring-gray-200 focus:ring-primary",
+          className,
+        )}
         {...field}
         {...props}
         placeholder=" "

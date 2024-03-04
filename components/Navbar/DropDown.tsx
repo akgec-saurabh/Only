@@ -1,5 +1,7 @@
+"use client";
 import React from "react";
 import Button from "../Button";
+import { useRouter } from "next/navigation";
 
 const DropDown = ({
   label,
@@ -11,6 +13,10 @@ const DropDown = ({
     href: string;
   }[];
 }) => {
+  const router = useRouter();
+  const handleMenuClick = (href: string) => {
+    router.push(href);
+  };
   return (
     <div className="group relative">
       <Button variant="link">{label}</Button>
@@ -22,6 +28,9 @@ const DropDown = ({
               className="block text-sm font-normal capitalize"
               key={item.label}
               variant="link"
+              onClick={() => {
+                handleMenuClick(item.href);
+              }}
             >
               {item.label}
             </Button>

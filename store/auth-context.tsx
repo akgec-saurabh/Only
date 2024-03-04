@@ -1,4 +1,5 @@
-import { createContext, useEffect, useState } from "react";
+import { setSessionStatus } from "@/utils/session";
+import { createContext, useContext, useEffect, useState } from "react";
 
 interface UserProps {
   email: string;
@@ -9,7 +10,6 @@ interface UserProps {
 interface AuthContextValueProps {
   // todo : i think i need to add more to user with jwt
   user: UserProps;
-  isAuthenticated: boolean;
   isAuthOpen: boolean;
   openAuth: () => void;
   closeAuth: () => void;
@@ -17,9 +17,14 @@ interface AuthContextValueProps {
   logout: () => void;
 }
 
+export const useAuth = () => {
+  const { user } = useContext(AuthContext);
+
+  return { user };
+};
+
 const AuthContext = createContext<AuthContextValueProps>({
   user: { email: "", name: { firstName: "", lastName: "" }, token: "" },
-  isAuthenticated: false,
   isAuthOpen: false,
   openAuth: () => {},
   closeAuth: () => {},
@@ -36,28 +41,43 @@ interface AuthContextProviderProps {
 export const AuthContextProvider: React.FC<AuthContextProviderProps> = ({
   children,
 }) => {
-  const userData =
-    typeof window !== "undefined" ? localStorage.getItem("userData") : null;
-
-  const [user, setUser] = useState<UserProps>({
-    email: "",
-    name: { firstName: "", lastName: "" },
-    token: "",
-  });
-
-  useEffect(() => {
-    const userData = localStorage.getItem("userData");
+  const [user, setUser] = useState<UserProps>(() => {
+    // const userData =
+    // typeof window !== "undefined" ? localStorage.getItem("userData") : null;
+    const userData = window.localStorage.getItem("userData");
     if (userData) {
       const data = JSON.parse(userData);
-      setUser({
+      return {
         email: data.email,
         token: data.token,
         name: { firstName: data.name.firstName, lastName: data.name.lastName },
-      });
-    }
-  }, [userData]);
+      };
+    } else
+      return {
+        email: "",
+        name: { firstName: "", lastName: "" },
+        token: "",
+      };
+  });
 
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+  if (user.token) {
+    setSessionStatus(true);
+  } else {
+    setSessionStatus(false);
+  }
+
+  // useEffect(() => {
+  //   const userData = localStorage.getItem("userData");
+  //   if (userData) {
+  //     const data = JSON.parse(userData);
+  //     setUser({
+  //       email: data.email,
+  //       token: data.token,
+  //       name: { firstName: data.name.firstName, lastName: data.name.lastName },
+  //     });
+  //   }
+  // }, []);
+
   const [isAuthOpen, setIsAuthOpen] = useState<boolean>(false);
 
   const openAuthHandler = () => {
@@ -95,7 +115,6 @@ export const AuthContextProvider: React.FC<AuthContextProviderProps> = ({
 
   const contextValue: AuthContextValueProps = {
     user,
-    isAuthenticated,
     isAuthOpen,
     openAuth: openAuthHandler,
     closeAuth: closeAuthHandler,

@@ -3,6 +3,7 @@ export const shopMenu = [
   { label: "Shop List V2", href: "#shop-list-v2" },
   { label: "Shopping Cart", href: "#shopping-cart" },
   { label: "Checkout", href: "#checkout" },
+  { label: "Orders", href: "orders" },
   { label: "Order Complete", href: "#order-complete" },
   { label: "Order Tracking", href: "#order-tracking" },
 ];

@@ -9,6 +9,10 @@ import Payment from "./Payment";
 import Link from "next/link";
 import CartTotal from "./CartTotal";
 import CartContext from "@/store/cart-context";
+import { useMutation } from "@tanstack/react-query";
+import axios from "axios";
+import AuthContext from "@/store/auth-context";
+import { useRouter } from "next/navigation";
 
 interface Values {
   firstName: string;
@@ -35,6 +39,23 @@ const initialValues = {
 };
 
 const BillingForm = () => {
+  const router = useRouter();
+  const { user } = useContext(AuthContext);
+  const { mutate } = useMutation({
+    mutationKey: ["payment"],
+    mutationFn: (value: Values) => {
+      return axios.post(
+        process.env.NEXT_PUBLIC_BACKEND_API + "/api/payment/",
+        value,
+        { headers: { Authorization: `Bearer ${user.token}` } },
+      );
+    },
+    onSuccess: ({ data }) => {
+      console.log(data);
+      router.push(data.url);
+    },
+  });
+
   const { cart } = useContext(CartContext);
   return (
     <div className="flex-[4]">
@@ -52,7 +73,7 @@ const BillingForm = () => {
             .required("Required"),
 
           email: Yup.string()
-            .max(15, "Must be 15 characters or less")
+            .min(5, "Must be 5 characters or more")
             .required("Required"),
 
           phone: Yup.string()
@@ -69,7 +90,7 @@ const BillingForm = () => {
           values: Values,
           { setSubmitting }: FormikHelpers<Values>,
         ) => {
-          console.log(values);
+          mutate(values);
         }}
       >
         <Form className=" flex flex-col gap-16 py-4 xl:flex-row">

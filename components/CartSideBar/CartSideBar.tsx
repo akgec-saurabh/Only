@@ -26,6 +26,7 @@ const CartSideBar = () => {
           console.log(response.data.cart);
           return response.data.cart;
         }),
+    enabled: !!user.token,
   });
 
   console.log(cart);

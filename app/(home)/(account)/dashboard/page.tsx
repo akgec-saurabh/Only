@@ -3,8 +3,7 @@ import React from "react";
 
 const page = () => {
   return (
-    <div className="max-width-container">
-      <h2 className="mb-12 text-[35px] font-bold uppercase">PROFILE</h2>
+    <div className="">
       <UserProfile />
     </div>
   );

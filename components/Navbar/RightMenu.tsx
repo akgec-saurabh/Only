@@ -25,7 +25,7 @@ const RightMenu = () => {
     if (!user.token) {
       openAuth();
     } else {
-      router.push("/profile");
+      router.push("/dashboard");
     }
   };
   return (
