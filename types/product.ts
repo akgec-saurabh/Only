@@ -60,7 +60,7 @@ export interface AdditionalInformationProps {
 // export interface ProductDetailProps {
 //   description: DescriptionProps;
 //   additionalInformation: AdditionalInformationProps;
-// reviews: reviewsProps[];
+//   reviews?: reviewsProps[];
 // }
 
 export interface CartItem {

@@ -10,7 +10,7 @@ interface ProductReviewsProps {
 const ProductReviews: React.FC<ProductReviewsProps> = ({ reviews }) => {
   return (
     <div className="py-12">
-      <h2 className="text-lg font-medium mb-6"> Reviews</h2>
+      <h2 className="mb-6 text-lg font-medium"> Reviews</h2>
       <div className="space-y-6">
         {reviews.map((review) => (
           // TODO add userid instead of key
@@ -36,15 +36,15 @@ const UserReview = ({
     <>
       <div className="flex text-sm text-gray-600">
         <Image
-          className="rounded-full shadow flex-shrink-0 object-cover mr-10 w-16 h-16"
+          className="mr-10 h-16 w-16 flex-shrink-0 rounded-full object-cover shadow"
           src="/user.jpg"
           alt="User Profile Photo"
           width={64}
           height={64}
         />
-        <div className="flex flex-col mb-4">
-          <div className="flex justify-between items-center">
-            <div className="flex justify-center flex-col mb-2">
+        <div className="mb-4 flex flex-col">
+          <div className="flex items-center justify-between">
+            <div className="mb-2 flex flex-col justify-center">
               <div className="text-primary">{author}</div>
               <div>{date}</div>
             </div>
@@ -54,7 +54,7 @@ const UserReview = ({
           <div>{content}</div>
         </div>
       </div>
-      <div className="w-full h-[0.2px] bg-gray-300"></div>
+      <div className="h-[0.2px] w-full bg-gray-300"></div>
     </>
   );
 };

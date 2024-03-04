@@ -3,10 +3,10 @@ import React, { useState } from "react";
 import ProductAdditionalInformation from "../components/ProductDetail/ProductAdditionalInformation";
 import ProductDescription from "@/components/ProductDetail/ProductDescription";
 import ProductReviews from "@/components/ProductDetail/ProductReviews";
-import { productDetailProps } from "@/types/product";
+import { ProductDetailProps } from "@/types/product";
 import ProductDetailHeading from "../components/ProductDetail/ProductDetailHeading";
 
-const ProductDetail: React.FC<productDetailProps> = ({
+const ProductDetail: React.FC<ProductDetailProps> = ({
   description,
   additionalInformation,
   reviews,
@@ -27,7 +27,16 @@ const ProductDetail: React.FC<productDetailProps> = ({
       {detailHeading === 1 && (
         <ProductAdditionalInformation {...additionalInformation} />
       )}
-      {detailHeading === 2 && <ProductReviews reviews={reviews} />}
+      {detailHeading === 2 && (
+        <ProductReviews
+          reviews={{
+            author: "string",
+            date: "string",
+            rating: "number",
+            content: "Sds",
+          }}
+        />
+      )}
     </div>
   );
 };
