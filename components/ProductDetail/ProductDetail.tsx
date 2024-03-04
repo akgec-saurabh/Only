@@ -1,10 +1,10 @@
 "use client";
 import React, { useState } from "react";
-import ProductAdditionalInformation from "../components/ProductDetail/ProductAdditionalInformation";
+import ProductAdditionalInformation from "./ProductAdditionalInformation";
 import ProductDescription from "@/components/ProductDetail/ProductDescription";
 import ProductReviews from "@/components/ProductDetail/ProductReviews";
 import { ProductDetailProps } from "@/types/product";
-import ProductDetailHeading from "../components/ProductDetail/ProductDetailHeading";
+import ProductDetailHeading from "./ProductDetailHeading";
 
 const ProductDetail: React.FC<ProductDetailProps> = ({
   description,
@@ -12,10 +12,6 @@ const ProductDetail: React.FC<ProductDetailProps> = ({
   reviews,
 }) => {
   const [detailHeading, setDetailHeading] = useState(0);
-  console.log(
-    "------------------ADDITONAL----------------",
-    additionalInformation,
-  );
 
   return (
     <div className="xl: mx-auto my-24 max-w-xl px-4 md:max-w-2xl lg:max-w-5xl  ">
@@ -27,16 +23,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({
       {detailHeading === 1 && (
         <ProductAdditionalInformation {...additionalInformation} />
       )}
-      {detailHeading === 2 && (
-        <ProductReviews
-          reviews={{
-            author: "string",
-            date: "string",
-            rating: "number",
-            content: "Sds",
-          }}
-        />
-      )}
+      {detailHeading === 2 && <ProductReviews reviews={reviews} />}
     </div>
   );
 };

@@ -50,18 +50,18 @@ export interface AdditionalInformationProps {
   storage: string;
 }
 
-// export interface reviewsProps {
-//   author: string;
-//   date: string;
-//   rating: number;
-//   content: string;
-// }
+export interface reviewsProps {
+  author: string;
+  date: string;
+  rating: number;
+  content: string;
+}
 
-// export interface ProductDetailProps {
-//   description: DescriptionProps;
-//   additionalInformation: AdditionalInformationProps;
-//   reviews?: reviewsProps[];
-// }
+export interface ProductDetailProps {
+  description: DescriptionProps;
+  additionalInformation: AdditionalInformationProps;
+  reviews: reviewsProps[];
+}
 
 export interface CartItem {
   id: string;
