@@ -40,12 +40,12 @@ const Overlays = () => {
             <CartSideBar />
           </>
         )}
-        {isAuthOpen && (
+        {/* {isAuthOpen && (
           <>
             <Backdrop opacity="dark" onClick={closeAuth} />
             <Auth />
           </>
-        )}
+        )} */}
       </AnimatePresence>
     </>
   );

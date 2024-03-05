@@ -6,6 +6,8 @@ import UserIcon from "@/components/svg/UserIcon";
 import { queryClient } from "@/lib/query";
 import { cn } from "@/lib/utils";
 import AuthContext from "@/store/auth-context";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
@@ -47,11 +49,22 @@ const layout = ({ children }) => {
     heading = "Wishlist";
   }
 
-  const handleLogout = () => {
+  // const { data } = useQuery({
+  //   queryKey: ["auth", "cart"],
+  //   queryFn: () => {
+  //     return axios.get(`${process.env.NEXT_PUBLIC_BACKEND_API}/logout`);
+  //   },
+  // });
+  const handleLogout = async () => {
     queryClient.invalidateQueries({ queryKey: ["auth"] });
     queryClient.invalidateQueries({ queryKey: ["cart"] });
     logout();
     router.replace("/");
+    const res = await axios.get(
+      `${process.env.NEXT_PUBLIC_BACKEND_API}/api/auth/logout`,
+      { withCredentials: true },
+    );
+    console.log(res.data);
   };
 
   return (

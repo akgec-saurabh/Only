@@ -5,17 +5,14 @@ import { ProductProps } from "@/types/product";
 import Pagination from "./Pagination";
 import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "next/navigation";
+import axios from "axios";
 
 const getAllProduct = async (query: {}) => {
   try {
     const url = `${process.env.NEXT_PUBLIC_BACKEND_API}/api/products?${query}`;
-    const response = await fetch(url);
+    const response = await axios.get(url, { withCredentials: true });
 
-    if (!response.ok) {
-      throw new Error("Some Error Occured While Fetching Product");
-    }
-
-    return await response.json();
+    return response.data;
   } catch (error) {
     console.log(error);
   }
@@ -37,9 +34,10 @@ const ProductGrid: React.FC<ProductGridProps> = ({ page = 1 }) => {
       return getAllProduct(query);
     },
   });
+  console.log(data);
 
   return (
-    <div className="mx-auto  max-w-xl p-4 md:max-w-2xl xl:max-w-screen-2xl">
+    <div className="">
       {isPending ? (
         <div className="text-center text-xl font-medium">Loading</div>
       ) : (

@@ -21,12 +21,16 @@ const RightMenu = () => {
     openSidebar();
   };
 
-  const openAuthHandler = () => {
-    if (!user.token) {
-      openAuth();
-    } else {
-      router.push("/dashboard");
-    }
+  // const openAuthHandler = () => {
+  //   if (!user.token) {
+  //     openAuth();
+  //   } else {
+  //     router.push("/dashboard");
+  //   }
+  // };
+
+  const handleAuth = () => {
+    router.push("/dashboard");
   };
   return (
     <ul className="flex items-center justify-end gap-4 lg:gap-1 xl:gap-2 2xl:gap-4 ">
@@ -36,7 +40,7 @@ const RightMenu = () => {
         </Button>
       </li>
       <li>
-        <Button size="icon" variant="secondary" onClick={openAuthHandler}>
+        <Button size="icon" variant="secondary" onClick={handleAuth}>
           {/* <PiUser size={24} /> */}
           <UserIcon />
         </Button>

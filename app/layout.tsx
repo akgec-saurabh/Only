@@ -27,7 +27,11 @@ export default function RootLayout({
         <Providers>
           <Overlays />
           <Header />
-          <main className="pt-[80px]">{children}</main>
+          <main className="pt-[80px]">
+            <div className="mx-auto max-w-xl p-4 md:max-w-2xl  lg:max-w-screen-lg  xl:max-w-screen-2xl xl:px-10">
+              {children}
+            </div>
+          </main>
           <BottomFooter />
         </Providers>
       </body>

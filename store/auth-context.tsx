@@ -42,9 +42,9 @@ export const AuthContextProvider: React.FC<AuthContextProviderProps> = ({
   children,
 }) => {
   const [user, setUser] = useState<UserProps>(() => {
-    // const userData =
-    // typeof window !== "undefined" ? localStorage.getItem("userData") : null;
-    const userData = window.localStorage.getItem("userData");
+    const userData =
+      typeof window !== "undefined" ? localStorage.getItem("userData") : null;
+    // const userData = window.localStorage.getItem("userData");
     if (userData) {
       const data = JSON.parse(userData);
       return {
@@ -59,12 +59,6 @@ export const AuthContextProvider: React.FC<AuthContextProviderProps> = ({
         token: "",
       };
   });
-
-  if (user.token) {
-    setSessionStatus(true);
-  } else {
-    setSessionStatus(false);
-  }
 
   // useEffect(() => {
   //   const userData = localStorage.getItem("userData");

@@ -49,26 +49,6 @@ const UserProfile = () => {
             name="email"
             className="bg-gray-100"
           />
-          <div className="max-w-lg text-wrap break-words border">
-            <div className="flex items-center justify-between border-b">
-              <span className="px-4">Token</span>
-              <Button
-                className=""
-                type="button"
-                onClick={() => {
-                  navigator.clipboard.writeText(user.token);
-                  setCopy(true);
-                  clearTimeout(timeoutId);
-                  timeoutId = window.setTimeout(() => {
-                    setCopy(false);
-                  }, 2000);
-                }}
-              >
-                {copy ? <PiChecks size={20} /> : <BiCopy size={20} />}
-              </Button>
-            </div>
-            <p className="bg-gray-100 px-4 py-2">{user.token}</p>
-          </div>
         </Form>
       </Formik>
     </div>

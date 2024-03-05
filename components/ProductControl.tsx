@@ -24,7 +24,10 @@ const ProductControlsPreviousVersion: React.FC<ProductControlsProps> = ({
       return axios.post(
         process.env.NEXT_PUBLIC_BACKEND_API + "/api/cart/add",
         data,
-        { headers: { Authorization: `Bearer ${user.token}` } },
+        {
+          headers: { Authorization: `Bearer ${user.token}` },
+          withCredentials: true,
+        },
       );
     },
   });

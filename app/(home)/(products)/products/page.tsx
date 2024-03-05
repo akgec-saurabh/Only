@@ -11,7 +11,7 @@ export default function Home({
   searchParams: { page: number };
 }) {
   return (
-    <div className="mx-auto  ">
+    <div className="mx-auto lg:max-w-screen-lg xl:max-w-screen-2xl xl:px-10 ">
       {/* <CollectionGrid /> */}
       <div className="flex  ">
         <Filter />

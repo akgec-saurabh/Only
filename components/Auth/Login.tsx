@@ -29,6 +29,7 @@ const Login = () => {
       return axios.post(
         process.env.NEXT_PUBLIC_BACKEND_API + "/api/auth/login",
         userData,
+        { withCredentials: true },
       );
     },
     mutationKey: ["auth"],

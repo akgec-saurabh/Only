@@ -92,6 +92,7 @@ export const ShoppingCartItem: React.FC<CartItem> = ({
         productToDelete,
         {
           headers: { Authorization: `Bearer ${user.token}` },
+          withCredentials: true,
         },
       ),
     onMutate: async ({ id, color, size }) => {
@@ -126,8 +127,10 @@ export const ShoppingCartItem: React.FC<CartItem> = ({
       axios.patch(
         process.env.NEXT_PUBLIC_BACKEND_API + "/api/cart/quantity/increase",
         productToIncrease,
+
         {
           headers: { Authorization: `Bearer ${user.token}` },
+          withCredentials: true,
         },
       ),
     onMutate: async ({ id, color, size }) => {
@@ -169,7 +172,10 @@ export const ShoppingCartItem: React.FC<CartItem> = ({
       axios.patch(
         process.env.NEXT_PUBLIC_BACKEND_API + "/api/cart/quantity/decrease",
         productToDecrease,
-        { headers: { Authorization: `Bearer ${user.token}` } },
+        {
+          headers: { Authorization: `Bearer ${user.token}` },
+          withCredentials: true,
+        },
       ),
     onMutate: async () => {
       await queryClient.cancelQueries({ queryKey: ["cart"] });
